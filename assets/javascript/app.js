@@ -15,6 +15,8 @@ function start(x) {
 };
 
  function question(x) {
+        clearInterval(interval);
+        clearTimeout(timeUp); 
         correct = 0;
         wrong = 0;
         $("#clear").show();
@@ -26,20 +28,12 @@ function start(x) {
         $("#true").append("<button id='tru'>" + "True" + "</button>");
         $("#false").append("<button id='fal'>" + "False" + "</button>");
 
-        // if (timeUp == 0) {
-        //     unanswered++;
-        //     console.log(unanswered);
-        //     clearInterval(interval);
-        //     question2();
-        //     timer();
-        // }
-        // else {
+        
         $("#tru").on("click", function() {
             correct++;
             clearInterval(interval);
             question2(timeUp);
             timer();
-            console.log(correct);
         });
         $("#fal").on("click", function() {
             wrong++;
@@ -50,7 +44,6 @@ function start(x) {
         });
         timeUp = setTimeout(function() {
             unanswered++;
-            console.log(unanswered);
             clearInterval(interval);
             question2();
             timer();
@@ -84,12 +77,10 @@ function question2(x) {
         clearInterval(interval);
         question3();
         timer();
-        console.log(correct);
     });
 
     timeUp = setTimeout(function() {
         unanswered++;
-        console.log(unanswered);
         clearInterval(interval);
         question3();
         timer();
@@ -112,7 +103,6 @@ function question3(x) {
         clearInterval(interval);
         question4();
         timer();
-        console.log(correct);
     });
     $("#fal").on("click", function() {
         wrong++;
@@ -123,7 +113,6 @@ function question3(x) {
 
     timeUp = setTimeout(function() {
         unanswered++;
-        console.log(unanswered);
         clearInterval(interval);
         question4(timeUp);
         timer();
@@ -152,12 +141,10 @@ function question4(x) {
         clearInterval(interval);
         results();
         timer();
-        console.log(correct);
     });
 
     timeUp = setTimeout(function() {
         unanswered++;
-        console.log(unanswered);
         clearInterval(interval);
         results();
     }, 30500);
@@ -171,7 +158,7 @@ function results() {
     $("#false").empty();
     $("#clear").hide();
     clearInterval(interval);
-    $("#question").append("<button id='restart'>" + "Restart Game" + "</button><br>Correct: " + correct + "<br>" + "Wrong:" + wrong);
+    $("#question").append("<button id='restart'>" + "Restart Game" + "</button><br>Correct: " + correct + "<br>" + "Wrong:" + wrong + "<br>" + "Unanswered: " + unanswered);
     $("#restart").on("click", question);
     $("#restart").on("click", timer);
     if (correct > wrong) {
